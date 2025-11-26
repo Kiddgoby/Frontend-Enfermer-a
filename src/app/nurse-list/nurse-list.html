@@ -1,0 +1,42 @@
+<a routerLink="" class="btn btn-sm btn-outline-secondary mb-3">Ir a Home</a>
+
+<h2 class="text-black text-center mb-4">Lista de Enfermeros</h2>
+
+<div class="text-center mb-4">
+
+    <button (click)="toggleContrasenas()" class="btn fw-bold" [class.btn-danger]="mostrarContrasenas"
+        [class.btn-success]="!mostrarContrasenas">
+
+        @if (mostrarContrasenas) {
+        Ocultar Contraseñas
+        } @else {
+        Mostrar Contraseñas
+        }
+    </button>
+</div>
+
+<div class="container">
+
+    <img src="/img/nurse-list.jpg" alt="3H" class="img-fluid w-25 d-block mx-auto mb-4">
+
+    <div class="list">
+        @for (enf of enfermerosArray; track enf.id) {
+        <div class="alert alert-info py-2 my-2 d-flex justify-content-between align-items-center list">
+            <div class="span">
+                <span class="badge bg-dark rounded-pill me-2">{{ $index + 1 }}</span>
+                <span class="fw-bold">
+                    <span class="bold">Nombre: </span>{{ enf.nombre }}
+                    <span class="bold">Usuario: </span>{{ enf.Usuario }}
+                    <span class="bold">Contraseña: </span>
+                    @if (mostrarContrasenas) {
+                    {{ enf.Password }}
+                    } @else {
+                    ******
+                    }
+                </span>
+            </div>
+        </div>
+        }
+    </div>
+
+</div>
