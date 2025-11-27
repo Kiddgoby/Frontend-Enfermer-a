@@ -1,0 +1,30 @@
+<nav>
+
+</nav>
+
+<div class="container mt-5">
+
+    <div class="text-center mb-4">
+        <h1 class="display-4 fw-bold">B-J Medical</h1>
+        <p class="lead fw-semibold">Página principal hecha en Angular + Bootstrap</p>
+        <button class="btn btn-primary" (click)="toggle()">Mostrar/Ocultar lista</button>
+    </div>
+
+    @if (show) {
+    <div class="card shadow-sm">
+        <div class="card-body">
+        <h5 class="card-title">Listado de enfermeras</h5>
+
+        <ul class="list-group">
+            @for (item of items; track item) {
+            <li class="list-group-item">
+                {{ item }}
+            </li>
+            }
+        </ul>
+
+        </div>
+    </div>
+    }
+
+</div>

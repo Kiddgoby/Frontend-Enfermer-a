@@ -1,1 +1,65 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+:root {
+  /* Colores principales */
+  --primary: #182D5B;
+  --primary-light: #2A3E76;
+  --primary-lighter: #4C63A6;
+
+  /* Colores secundarios */
+  --secondary: #B91F27;
+  --secondary-light: #D6424B;
+  --secondary-dark: #8A161C;
+
+  /* Grises para UI */
+  --gray-100: #f4f6f8;
+  --gray-300: #d7dce1;
+  --gray-500: #9aa1ac;
+  --gray-700: #4b5563;
+  --gray-900: #1f2937;
+
+  /* Colores de fondo */
+  --background: #f2f5fc;
+  --card-bg: #ffffff;
+
+  /* Texto */
+  --text: #1c1f24;
+  --text-light: #4d5563;
+
+  /* por si acaso */
+  --success: #1E824C;
+  --warning: #E7A602;
+  --danger: #B91F27; 
+}
+
+.nav-logo {
+  height: 55px;
+  width: auto;
+  object-fit: contain;
+
+}
+
+.text-primary-title {
+  color: var(--primary);
+  font-size: 1.25rem;
+  cursor: default;               
+  transition: color .2s ease-in-out; 
+}
+
+.text-primary-title:hover {
+  color: var(--secondary);
+}
+
+.text-secondary {
+  color: var(--secondary);
+  cursor: default;               
+  transition: color .2s ease-in-out;
+}
+
+.text-secondary:hover {
+  color: var(--secondary);
+}
+
+.bg-nav {
+  background-color: var(--background) !important;
+}
