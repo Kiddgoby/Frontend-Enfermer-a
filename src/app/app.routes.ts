@@ -5,7 +5,6 @@ import { NurseSearch } from './nurse-search/nurse-search';
 import { App } from './app';
 import { Home } from './home/home';
 import { NurseList } from './nurse-list/nurse-list';
-import { NurseSearch } from './nurse-search/nurse-search';
 
 export const routes: Routes = [
     {path: '', component: Home },
