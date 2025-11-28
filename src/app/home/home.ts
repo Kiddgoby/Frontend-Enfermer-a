@@ -8,9 +8,18 @@ import { Component } from '@angular/core';
   styleUrl: './home.css',
 })
 export class Home {
-  show = true;
-  items = ['Sonia Garcia', 'Lidia Soler', 'Marta Lopez'];
-  toggle() {
+  // Propiedad para controlar la visibilidad de la lista de horarios
+  show: boolean = false;
+
+  // Lista de horarios de visita
+  items: string[] = [
+    'Mañanas: 10:00 - 12:00',
+    'Tardes: 16:00 - 18:00',
+    'Noches: 20:00 - 21:00',
+  ];
+
+  // Método para alternar la visibilidad
+  toggle(): void {
     this.show = !this.show;
   }
 }
