@@ -1,0 +1,41 @@
+<div class="search-container">
+
+  <h2 class="title"> Buscar Enfermero</h2>
+
+  <div class="search-box">
+    <input type="text" placeholder="Escribe un nombre..." [(ngModel)]="searchText">
+    <button (click)="search()">Buscar</button>
+  </div>
+
+  @if (hasSearched && results.length === 0) {
+    <p class="no-results">No hay resultados para "{{ searchText }}"</p>
+  }
+
+  @if (results.length > 0) {
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Usuario</th>
+          <th>Foto</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (user of results; track $index) {
+          <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.user }}</td>
+            <td>
+              <img src="https://cdn-icons-png.flaticon.com/512/387/387561.png" width="40">
+            </td>
+          </tr>
+          
+        }
+      </tbody>
+    </table>
+  }
+
+</div>
+
+
