@@ -1,0 +1,32 @@
+.horarios-container {
+    background-color: #f8f9fa; /* Fondo suave para la sección */
+}
+
+.text-primary {
+    color: #007bff !important; /* Azul primario de Bootstrap */
+}
+
+.text-secondary {
+    color: #6c757d !important; /* Gris secundario */
+}
+
+.card-header.bg-primary {
+    background-color: #007bff !important;
+}
+
+.doctor-img {
+    max-width: 150px; /* Reducir el tamaño de la imagen para que no ocupe tanto */
+    height: auto;
+    object-fit: cover;
+}
+
+/* Ajuste para pantallas pequeñas */
+@media (max-width: 768px) {
+    .doctor-img {
+        max-width: 100%; /* Imagen a ancho completo en móviles */
+        margin-top: 1rem;
+    }
+    .info-section .d-flex {
+        flex-direction: column;
+    }
+}
