@@ -1,0 +1,68 @@
+<section class="horarios-container py-5">
+    <div class="container">
+        <div class="row g-5">
+
+            <!-- IZQUIERDA: Horarios y Botón -->
+            <div class="col-lg-5 col-md-12">
+                <div class="text-center mb-4">
+                    <h1 class="display-4 fw-bold text-primary">B-J Medical</h1>
+                    <p class="lead text-muted">Hospital de Especialidades</p>
+                </div>
+
+                <div class="card shadow-lg border-0">
+                    <div class="card-header bg-primary text-white">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2 class="h5 m-0">Listado de Horarios de Visita</h2>
+                            <button class="btn btn-light btn-sm fw-bold" (click)="toggle()">
+                                @if (show) {
+                                    Ocultar Horarios
+                                } @else {
+                                    Mostrar Horarios
+                                }
+                            </button>
+                        </div>
+                    </div>
+
+                    @if (show) {
+                    <div class="card-body p-0">
+                        <ul class="list-group list-group-flush">
+                            @for (item of items; track $index) {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span class="fw-semibold">{{ item }}</span>
+                                <span class="badge bg-success rounded-pill">Disponible</span>
+                            </li>
+                            }
+                        </ul>
+                    </div>
+                    } @else {
+                        <div class="card-body text-center text-muted">
+                            <p class="m-0">Haz clic en "Mostrar Horarios" para ver los tramos de visita.</p>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <!-- DERECHA: Información Detallada -->
+            <div class="col-lg-7 col-md-12">
+                <article class="info-section">
+                    <h2 class="display-5 fw-bold text-center mb-4 text-secondary">Información Importante sobre Visitas</h2>
+
+                    <div class="d-flex flex-column flex-md-row align-items-start gap-4 mb-4">
+                        <p class="fs-6 fw-semibold flex-grow-1">
+                            Los horarios de visita están disponibles de <strong>lunes a domingo</strong>, todos los días del año, sin excepción. Puedes venir dentro de los tramos indicados sin necesidad de cita previa. <br>
+                            <strong>Nota Importante:</strong> Este hospital se especializa en atención programada y no atiende emergencias. Si buscas sirenas, adrenalina y médicos corriendo en cámara lenta, este no es el lugar. Nuestro enfoque es la tranquilidad y el descanso del paciente.
+                        </p>
+
+                        <!-- La imagen 'tl.webp' debe estar disponible en la carpeta de assets o ser una URL pública -->
+                        <img src="tl.webp" alt="Doctores en un ambiente tranquilo" class="img-fluid rounded shadow-sm doctor-img">
+                    </div>
+
+                    <p class="fs-6 fw-semibold border-start border-4 border-info ps-3 pt-2 pb-2 bg-light rounded">
+                        El acceso durante el horario de visitas es tranquilo, organizado y pensado para que los pacientes tengan compañía sin interrumpir su descanso ni las labores del personal sanitario.
+                    </p>
+                </article>
+            </div>
+
+        </div>
+    </div>
+</section>

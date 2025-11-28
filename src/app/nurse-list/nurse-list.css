@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    min-width: 100vh;
+    justify-content: center;
+    align-items: center;
+    background-color: aliceblue;
+}
+
+.list,
+.alert {
+    min-width: 100vh;
+}
+
+img {
+    max-width: 30vh;
+    margin: 20px;
+}
+
+.span {
+    margin: 10px;
+    padding: 5px;
+}
+
+span {
+    margin: 10px;
+}
+
+.bold {
+    font-weight: bold;
+    
+    
+}
