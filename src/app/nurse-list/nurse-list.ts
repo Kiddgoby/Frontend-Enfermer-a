@@ -22,10 +22,10 @@ export class NurseList {
   mostrarContrasenas: boolean = true;
 
   enfermerosArray: Enfermero[] = [
-    { id: 1, nombre: 'Ana García', Usuario: 'Anag', Password: "Pl2@onq" },
-    { id: 2, nombre: 'Luis Pérez', Usuario: 'Luisp', Password: "p9/nñ" },
-    { id: 3, nombre: 'Marta Ruiz', Usuario: 'Martar', Password: "1QomdP" },
-    { id: 4, nombre: 'Javier Soto', Usuario: 'Javiers', Password: "Pdnkq" },
+    { id: 1, nombre: 'Ana García', Usuario: 'Ana', Password: "Pl2@onq" },
+    { id: 2, nombre: 'Luis Pérez', Usuario: 'Luis', Password: "p9/nñ" },
+    { id: 3, nombre: 'Marta Ruiz', Usuario: 'Marta', Password: "1QomdP" },
+    { id: 4, nombre: 'Javier Soto', Usuario: 'Javier', Password: "Pdnkq" },
   ];
   
   toggleContrasenas() {
