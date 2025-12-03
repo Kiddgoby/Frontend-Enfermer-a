@@ -12,7 +12,7 @@ interface Enfermero {
 @Component({
   selector: 'app-nurse-list',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './nurse-list.html',
   styleUrl: './nurse-list.css',
 })
