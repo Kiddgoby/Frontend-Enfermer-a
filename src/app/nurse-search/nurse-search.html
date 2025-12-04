@@ -1,41 +1,49 @@
-<div class="search-container">
+<div class="container bg-body-secondary p-5 rounded-4 shadow">
 
-  <h2 class="title"> Buscar Enfermero</h2>
+  <h1 class="text-primary fw-bold text-center mb-4">Buscar Enfermero</h1>
 
-  <div class="search-box">
-    <input type="text" placeholder="Escribe un nombre..." [(ngModel)]="searchText">
-    <button (click)="search()">Buscar</button>
+  <div class="d-flex justify-content-center align-items-center gap-2 flex-wrap mb-4">
+    <input type="text"
+           class="form-control bg-light border border-primary-subtle shadow-sm"
+           placeholder="Escribe un nombre..."
+           [(ngModel)]="searchText">
+
+    <button class="btn btn-primary px-4 shadow-sm" (click)="search()">Buscar</button>
   </div>
 
   @if (hasSearched && results.length === 0) {
-    <p class="no-results">No hay resultados para "{{ searchText }}"</p>
+    <p class="text-center text-secondary-emphasis fs-5">
+      No hay resultados para "{{ searchText }}"
+    </p>
   }
 
   @if (results.length > 0) {
-    <table class="results-table">
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Usuario</th>
-          <th>Foto</th>
-        </tr>
-      </thead>
+    <div class="table-responsive">
+      <table class="table table-hover table-striped shadow-sm rounded-3 overflow-hidden">
 
-      <tbody>
-        @for (user of results; track $index) {
+        <thead class="table-primary text-primary-emphasis">
           <tr>
-            <td>{{ user.name }}</td>
-            <td>{{ user.user }}</td>
-            <td>
-              <img src="https://cdn-icons-png.flaticon.com/512/387/387561.png" width="40">
-            </td>
+            <th>Nombre</th>
+            <th>Usuario</th>
+            <th>Foto</th>
           </tr>
-          
-        }
-      </tbody>
-    </table>
+        </thead>
+
+        <tbody class="table-group-divider">
+          @for (user of results; track $index) {
+            <tr class="bg-light-subtle">
+              <td class="text-secondary-emphasis fw-semibold">{{ user.name }}</td>
+              <td class="text-secondary">{{ user.user }}</td>
+              <td>
+                <img src="https://cdn-icons-png.flaticon.com/512/387/387561.png"
+                     class="results-img rounded-circle border border-primary-subtle shadow-sm">
+              </td>
+            </tr>
+          }
+        </tbody>
+
+      </table>
+    </div>
   }
 
 </div>
-
-
