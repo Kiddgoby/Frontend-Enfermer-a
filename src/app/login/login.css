@@ -1,0 +1,81 @@
+/* Contenedor del login */
+.login-container {
+    max-width: 420px;
+    margin: 3rem auto;
+    padding: 2rem;
+    background-color: #f8f9fa; /* Misma estética que horarios-container */
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Título */
+.login-container h1 {
+    margin-bottom: 1.8rem;
+}
+
+/* Etiquetas */
+.login-container label p {
+    margin: 0.5rem 0 0.2rem;
+    color: #6c757d; /* Gris secundario */
+}
+
+/* Inputs */
+.login-container input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.login-container input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Botón */
+.login-container button {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 0.7rem;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.25s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Texto del botón */
+.login-container button h2 {
+    color: white;
+}
+
+/* Mensajes de estado */
+.success {
+    margin-top: 1rem;
+    color: #28a745; /* Verde éxito */
+    font-weight: bold;
+}
+
+.error {
+    margin-top: 1rem;
+    color: #dc3545; /* Rojo error */
+    font-weight: bold;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .login-container {
+        margin: 2rem;
+        padding: 1.5rem;
+    }
+}

@@ -1,13 +1,13 @@
 <main class="login-container">
-  <h1>Iniciar sesión</h1>
+  <h1 class="fw-bold text-primary">Iniciar sesión</h1>
   <form (ngSubmit)="login()" #loginForm="ngForm">
-    <label for="username">Usuario</label>
+    <label for="username"><p class="fs-6 fw-semibold flex-grow-1">Usuario</p></label>
     <input type="text" id="username" name="username" [(ngModel)]="username" required />
 
-    <label for="password">Contraseña</label> 
+    <label for="password"><p class="fs-6 fw-semibold flex-grow-1">Contraseña</p></label> 
     <input type="password" id="password" name="password" [(ngModel)]="password" required />
 
-    <button type="submit">Entrar</button>
+    <button type="submit"><h2 class="h5 m-0">Entrar</h2></button>
   </form>
 
   <div [ngSwitch]="loginStatus">
@@ -16,4 +16,4 @@
     <p *ngSwitchCase="'empty'" class="error">Por favor, completa todos los campos</p>
     <p *ngSwitchDefault></p>
   </div>
-</main> 
+</main>
