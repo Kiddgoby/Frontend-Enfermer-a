@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router'; 
+
 
 @Component({
   selector: 'app-login',
+  standalone: true, 
   imports: [FormsModule, CommonModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
@@ -22,6 +25,7 @@ export class Login {
     {username: 'david', password: 'david'}
   ];
 
+  constructor(private router: Router) {}
   login() {
     // Validar campos vacíos
     if (!this.username || !this.password) {
@@ -36,6 +40,10 @@ export class Login {
 
     if (foundUser) {
       this.loginStatus = 'success';
+
+      if (this.username === 'olalla' || this.username === 'arnau') {
+        this.router.navigate(['./nurse-search']);
+      }
     } else {
       this.loginStatus = 'error';
     }
