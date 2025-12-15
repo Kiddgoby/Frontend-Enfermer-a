@@ -16,7 +16,7 @@ export class Login {
 
   username: string = '';
   password: string = '';
-  loginStatus: string = '';
+  loginStatus: 'empty' | 'error' | 'success' | '' = '';
 
   private nurseUser = [
     { name: "Javier", last_name: "Givica", user: "JaGiFe", password: "1234" },
@@ -50,5 +50,19 @@ export class Login {
   } else {
     this.loginStatus = 'error';
   }
+  }
+  logout(): void {
+  this.loginService.logout();
+  this.username = '';
+  this.password = '';
+  this.loginStatus = '';
+  }
+
+  isLoggedIn(): boolean {
+    return this.loginService.isLoggedIn();
+  }
+
+  getLoggedUser(): string | null {
+    return this.loginService.getUser();
   }
 }

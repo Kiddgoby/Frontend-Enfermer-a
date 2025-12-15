@@ -9,8 +9,12 @@ export class LoginService {
 
   constructor() {}
 
-  setUser(username: string): void {
+  login(username: string): void {
     this.loggedUser = username;
+  }
+
+  setUser(username: string): void {
+    this.login(username);
   }
 
   logout(): void {
