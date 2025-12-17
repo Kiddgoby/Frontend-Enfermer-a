@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../auth.service';
 import { Router } from '@angular/router'; 
 
 
@@ -15,6 +16,13 @@ export class Login {
 
   username: string = '';
   password: string = '';
+  authService: AuthService;
+
+
+  constructor(authService: AuthService) {
+    this.authService = authService;
+  }
+
   loginStatus: string = '';
 
   // Datos simulados del enfermero
@@ -29,9 +37,14 @@ export class Login {
   login() {
     // Validar campos vacíos
     if (!this.username || !this.password) {
-      this.loginStatus = 'empty';
+      this.authService.setLoginStatus('empty');
       return;
     }
+
+
+    const nurse = this.authService.getNurses().find(n => n.username === this.username && n.password === this.password);
+    if (nurse) {
+      this.authService.setLoginStatus('success');
 
     // Validar con los datos locales simulados
     const foundUser = this.nurseUser.find(
@@ -45,7 +58,7 @@ export class Login {
         this.router.navigate(['./nurse-search']);
       }
     } else {
-      this.loginStatus = 'error';
+      this.authService.setLoginStatus('error');
     }
   }
 }

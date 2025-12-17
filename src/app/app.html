@@ -12,19 +12,19 @@
 
     <div class="collapse navbar-collapse" id="mainNavbar">
       <ul class="navbar-nav ms-auto">
-        <li class="fw-bold text-secondary">
+        <li class="fw-bold text-secondary" *ngIf="isLogged()">
           <a class="nav-link" routerLink="/">Home</a>
         </li>
-        <li class="fw-bold text-secondary">
+        <li class="fw-bold text-secondary" *ngIf="!isLogged()">
           <a class="nav-link" routerLink="/login">Login</a>
         </li>
-        <!-- <li class="fw-bold text-secondary">
-          <a class="nav-link" routerLink="/registro">Registro</a>
-        </li> -->
-        <li class="fw-bold text-secondary">
+        <li class="fw-bold text-secondary" *ngIf="!isLogged()">
+          <a class="nav-link" routerLink="/registration">Registro</a>
+        </li>
+        <li class="fw-bold text-secondary" *ngIf="isLogged()">
           <a class="nav-link" routerLink="/nurse-search">Búsqueda</a>
         </li>
-        <li class="fw-bold text-secondary">
+        <li class="fw-bold text-secondary" *ngIf="isLogged()">
           <a class="nav-link" routerLink="/nurselist">Lista</a>
         </li>
       </ul>
