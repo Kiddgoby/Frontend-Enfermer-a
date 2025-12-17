@@ -7,18 +7,14 @@ import { NurseService } from './nurse.service'; // Asegúrate que el archivo se 
   selector: 'app-nurse-list',
   standalone: true,
   imports: [CommonModule],
-  // Convención: Habitualmente se usa nurse-list.component.html
   templateUrl: './nurse-list.html',
-  // OJO AQUÍ: 
-  // En Angular 17+ se usa 'styleUrl' (singular). 
-  // En versiones anteriores (16 o menos) se usa 'styleUrls' (plural y array).
   styleUrl: './nurse-list.css',
 })
 export class NurseList implements OnInit { // Convención: Mejor llamarlo NurseListComponent
 
   private nurseService = inject(NurseService);
 
-  mostrarContrasenas: boolean = true;
+  mostrarContrasenas: boolean = false;
   enfermerosArray: Enfermero[] = [];
 
   ngOnInit(): void {
@@ -26,7 +22,6 @@ export class NurseList implements OnInit { // Convención: Mejor llamarlo NurseL
   }
 
   cargarEnfermeros() {
-    // Ahora esto funcionará porque ya creamos el método en el servicio
     this.enfermerosArray = this.nurseService.getEnfermeros();
   }
 

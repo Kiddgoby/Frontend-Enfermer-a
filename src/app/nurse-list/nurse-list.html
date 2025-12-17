@@ -3,12 +3,12 @@
 
 
 <div class="text-center mb-4">
-    <button (click)="toggleContrasenas()" class="btn fw-bold" [class.btn-danger]="mostrarContrasenas"
-        [class.btn-success]="!mostrarContrasenas">
+    <button (click)="toggleContrasenas()" class="btn fw-bold" [class.btn-success]="mostrarContrasenas"
+        [class.btn-danger]="!mostrarContrasenas">
         @if (mostrarContrasenas) {
-        Ocultar Contraseñas
+            Ocultar Contraseñas
         } @else {
-        Mostrar Contraseñas
+            Mostrar Contraseñas
         }
     </button>
 </div>
