@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms'; 
-import { CommonModule } from '@angular/common'; 
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { AuthService } from '../auth.service';
+
 
 @Component({
   selector: 'app-login',
@@ -11,18 +13,26 @@ import { CommonModule } from '@angular/common';
 export class Login {
   username: string = '';
   password: string = '';
-  loginStatus: string = ''; 
+  authService: AuthService;
+
+
+  constructor(authService: AuthService) {
+    this.authService = authService;
+  }
+
 
   login() {
     if (!this.username || !this.password) {
-      this.loginStatus = 'empty';
+      this.authService.setLoginStatus('empty');
       return;
     }
 
-    if (this.username === 'enfermero' && this.password === '1234') {
-      this.loginStatus = 'success';
+    // quiero que esto lea de la array que hay en el service para hacer el login
+    const nurse = this.authService.getNurses().find(n => n.username === this.username && n.password === this.password);
+    if (nurse) {
+      this.authService.setLoginStatus('success');
     } else {
-      this.loginStatus = 'error';
+      this.authService.setLoginStatus('error');
     }
   }
 }
