@@ -3,7 +3,6 @@
     min-width: 100vh;
     justify-content: center;
     align-items: center;
-    background-color: aliceblue;
 }
 
 .list,
@@ -27,6 +26,6 @@ span {
 
 .bold {
     font-weight: bold;
-    
-    
+
+
 }

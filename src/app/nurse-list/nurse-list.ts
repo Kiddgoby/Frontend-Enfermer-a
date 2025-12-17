@@ -1,13 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from "@angular/router";
-
-interface Enfermero {
-  id: number;
-  nombre: string;
-  Usuario: string;
-  Password: string;
-}
+import { Enfermero } from './enfermero.modelo';
+import { NurseService } from './nurse.service'; // Asegúrate que el archivo se llame así
 
 @Component({
   selector: 'app-nurse-list',
@@ -16,18 +10,21 @@ interface Enfermero {
   templateUrl: './nurse-list.html',
   styleUrl: './nurse-list.css',
 })
+export class NurseList implements OnInit { // Convención: Mejor llamarlo NurseListComponent
 
-export class NurseList {
-  
-  mostrarContrasenas: boolean = true;
+  private nurseService = inject(NurseService);
 
-  enfermerosArray: Enfermero[] = [
-    { id: 1, nombre: 'Ana García', Usuario: 'Ana', Password: "Pl2@onq" },
-    { id: 2, nombre: 'Luis Pérez', Usuario: 'Luis', Password: "p9/nñ" },
-    { id: 3, nombre: 'Marta Ruiz', Usuario: 'Marta', Password: "1QomdP" },
-    { id: 4, nombre: 'Javier Soto', Usuario: 'Javier', Password: "Pdnkq" },
-  ];
-  
+  mostrarContrasenas: boolean = false;
+  enfermerosArray: Enfermero[] = [];
+
+  ngOnInit(): void {
+    this.cargarEnfermeros();
+  }
+
+  cargarEnfermeros() {
+    this.enfermerosArray = this.nurseService.getEnfermeros();
+  }
+
   toggleContrasenas() {
     this.mostrarContrasenas = !this.mostrarContrasenas;
   }
