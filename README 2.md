@@ -49,4 +49,8 @@ Toda la información se gestiona de forma local mediante **services**, sin conex
 ---
 
 ## Flujo de navegación
-
+    Home
+    └── Registro
+    └── Login
+    ├── Búsqueda de enfermeros
+    └── Listado de todos los enfermeros
