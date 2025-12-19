@@ -33,25 +33,25 @@ export class Login {
     if (nurse) {
       this.authService.setLoginStatus('success');
 
-      const nurse = this.authService.getNurses().find(n => n.username === this.username && n.password === this.password);
-      if (nurse) {
-        this.authService.setLoginStatus('success');
+      // const nurse = this.authService.getNurses().find(n => n.username === this.username && n.password === this.password);
+      // if (nurse) {
+      //   this.authService.setLoginStatus('success');
 
-        // Validar con los datos locales simulados
-        // const foundUser = this.nurseUser.find(
-        //   user => user.username === this.username && user.password === this.password
-        // );
+      //   // Validar con los datos locales simulados
+      //   const foundUser = this.nurseUser.find(
+      //     user => user.username === this.username && user.password === this.password
+      //   );
 
-        // if (foundUser) {
-        //   this.loginStatus = 'success';
+      //   if (foundUser) {
+      //     this.loginStatus = 'success';
 
-        //   if (this.username === 'olalla' || this.username === 'arnau') {
-        //     this.router.navigate(['./nurse-search']);
-        //   }
-        // } else {
-        //   this.authService.setLoginStatus('error');
-        // }
-      }
+      //     if (this.username === 'olalla' || this.username === 'arnau') {
+      //       this.router.navigate(['./nurse-search']);
+      //     }
+      //   } else {
+      //     this.authService.setLoginStatus('error');
+      //   }
+      // }
     }
   }
 }
