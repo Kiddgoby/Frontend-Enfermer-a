@@ -1,34 +1,36 @@
-<main class="login-container">
-  <h1 class="fw-bold text-primary">Iniciar sesión</h1>
-  <form (ngSubmit)="login()" #loginForm="ngForm">
-    <label for="username">
-      <p class="fs-6 fw-semibold flex-grow-1">Usuario</p>
-    </label>
-    <input type="text" id="username" name="username" [(ngModel)]="username" required />
+<main>
+  <article class="login-container">
+    <h1 class="fw-bold text-primary">Iniciar sesión</h1>
+    <form (ngSubmit)="login()" #loginForm="ngForm">
+      <label for="username">
+        <p class="fs-6 fw-semibold flex-grow-1">Usuario</p>
+      </label>
+      <input type="text" id="username" name="username" [(ngModel)]="username" required />
 
-    <label for="password">
-      <p class="fs-6 fw-semibold flex-grow-1">Contraseña</p>
-    </label>
-    <input type="password" id="password" name="password" [(ngModel)]="password" required />
+      <label for="password">
+        <p class="fs-6 fw-semibold flex-grow-1">Contraseña</p>
+      </label>
+      <input type="password" id="password" name="password" [(ngModel)]="password" required />
 
-    <button type="submit">
-      <h2 class="h5 m-0">Entrar</h2>
-    </button>
-  </form>
+      <button type="submit">
+        <h2 class="h5 m-0">Entrar</h2>
+      </button>
+    </form>
 
-  <div class="login-error" *ngIf="authService.getLoginStatus() === 'error'">
-    <p class="text-danger fs-6 fw-semibold flex-grow-1 d-flex justify-content-center">Usuario o contraseña incorrectos
-    </p>
-  </div>
+    <div class="login-error" *ngIf="authService.getLoginStatus() === 'error'">
+      <p class="text-danger fs-6 fw-semibold flex-grow-1 d-flex justify-content-center">Usuario o contraseña incorrectos
+      </p>
+    </div>
 
-  <div class="login-error" *ngIf="authService.getLoginStatus() === 'empty'">
-    <p class="text-danger fs-6 fw-semibold flex-grow-1 d-flex justify-content-center">Por favor, completa todos los
-      campos
-    </p>
-  </div>
+    <div class="login-error" *ngIf="authService.getLoginStatus() === 'empty'">
+      <p class="text-danger fs-6 fw-semibold flex-grow-1 d-flex justify-content-center">Por favor, completa todos los
+        campos
+      </p>
+    </div>
 
-  <div [ngSwitch]="authService.getLoginStatus()">
-    <p *ngSwitchCase="'success'" class="success">¡Login correcto!</p>
-    <p *ngSwitchDefault></p>
-  </div>
+    <div [ngSwitch]="authService.getLoginStatus()">
+      <p *ngSwitchCase="'success'" class="success">¡Login correcto!</p>
+      <p *ngSwitchDefault></p>
+    </div>
+  </article>
 </main>
