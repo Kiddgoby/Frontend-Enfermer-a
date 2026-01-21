@@ -1,12 +1,12 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-
-import { routes } from './app.routes';
+import { provideHttpClient, withFetch } from '@angular/common/http';
+import { routes } from './app.routes'; // Asegúrate de que este archivo existe y tiene las rutas
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideBrowserGlobalErrorListeners(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes)
+    provideRouter(routes),      // <--- ESTO arregla el error "No provider found for ActivatedRoute"
+    provideHttpClient(withFetch()) // Esto permite que Angular use la API de Symfony
   ]
 };

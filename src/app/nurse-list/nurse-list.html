@@ -1,65 +1,33 @@
-<h2 class=" text-center mb-4 text-primary fw-bold display-4">Lista de Enfermeros</h2>
+<div class="container" style="padding: 20px; font-family: Arial, sans-serif;">
+    <h2>🩺 Listado de Enfermeros (Datos Reales)</h2>
 
-
-
-<div class="text-center mb-4">
-    <button (click)="toggleContrasenas()" class="btn fw-bold" [class.btn-success]="mostrarContrasenas"
-        [class.btn-danger]="!mostrarContrasenas">
-        @if (mostrarContrasenas) {
-            Ocultar Contraseñas
-        } @else {
-            Mostrar Contraseñas
-        }
+    <button (click)="cargarEnfermeros()" style="margin-bottom: 15px; padding: 8px 16px; cursor: pointer;">
+        🔄 Refrescar Datos de XAMPP
     </button>
-</div>
 
-<div class="container">
+    <div *ngIf="enfermerosArray.length > 0; else noHayDatos">
+        <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+            <thead style="background-color: #f2f2f2;">
+                <tr>
+                    <th style="padding: 10px;">ID</th>
+                    <th style="padding: 10px;">Nombre</th>
+                    <th style="padding: 10px;">Usuario</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let nurse of enfermerosArray">
+                    <td style="padding: 10px;">{{ nurse.id }}</td>
+                    <td style="padding: 10px;">{{ nurse.name }}</td>
+                    <td style="padding: 10px;">{{ nurse.username }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
-    <!-- <img src="/assets/img/nurse-list.jpg" alt="Enfermeros" class="img-fluid w-25 d-block mx-auto mb-4"> -->
-
-    <table class="table table-striped table-hover align-middle">
-
-        <!-- 
-            SOLUCIÓN: 
-            1. Usamos 'style' para forzar el color de fondo azul (#0d6efd es el azul de Bootstrap).
-            2. 'text-white' para que la letra sea blanca.
-        -->
-        <thead class="text-white" style="background-color: #0d6efd;">
-            <tr>
-                <!-- Importante: border-0 quita las líneas blancas que a veces quedan feas -->
-                <th scope="col" style="background-color: #0d6efd; color: white;">#</th>
-                <th scope="col" style="background-color: #0d6efd; color: white;">Foto</th>
-                <th scope="col" style="background-color: #0d6efd; color: white;">Nombre</th>
-                <th scope="col" style="background-color: #0d6efd; color: white;">Apellidos</th>
-                <th scope="col" style="background-color: #0d6efd; color: white;">Usuario</th>
-                <th scope="col" style="background-color: #0d6efd; color: white;">Contraseña</th>
-            </tr>
-        </thead>
-
-        <tbody>
-            @for (enf of enfermerosArray; track enf.user) {
-            <tr>
-                <td class="fw-bold">{{ $index + 1 }}</td>
-
-                <td>
-                    <img [src]="enf.foto" [alt]="enf.name" class="rounded-circle border border-dark"
-                        style="width: 50px; height: 50px; object-fit: cover;">
-                </td>
-
-                <td>{{ enf.name }}</td>
-                <td>{{ enf.last_name }}</td>
-                <td class="fw-bold">{{ enf.user }}</td>
-
-                <td>
-                    @if (mostrarContrasenas) {
-                    {{ enf.password }}
-                    } @else {
-                    ******
-                    }
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
-
+    <ng-template #noHayDatos>
+        <div style="padding: 20px; background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 4px;">
+            <p>⚠️ No se han encontrado datos en la base de datos o el servidor Symfony no responde.</p>
+            <p><small>Asegúrate de que Apache y MySQL estén activos en XAMPP.</small></p>
+        </div>
+    </ng-template>
 </div>
