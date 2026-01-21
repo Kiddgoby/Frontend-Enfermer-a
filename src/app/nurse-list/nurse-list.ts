@@ -1,7 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Enfermero } from './enfermero.modelo';
-import { NurseService } from './nurse.service'; // Asegúrate que el archivo se llame así
+import { NurseService } from '../service/nurse.service';
+import { Nurse } from '../models/nurse.model';
 
 @Component({
   selector: 'app-nurse-list',
@@ -15,15 +15,26 @@ export class NurseList implements OnInit { // Convención: Mejor llamarlo NurseL
   private nurseService = inject(NurseService);
 
   mostrarContrasenas: boolean = false;
-  enfermerosArray: Enfermero[] = [];
+  enfermerosArray: Nurse[] = [];
 
   ngOnInit(): void {
-    this.cargarEnfermeros();
+    this.nurseService.getEnfermeros().subscribe({
+      next: data => this.enfermerosArray = data,
+      error: err => console.error(err)
+    });
   }
 
+
   cargarEnfermeros() {
-    this.enfermerosArray = this.nurseService.getEnfermeros();
+    this.nurseService.getEnfermeros().subscribe({
+      next: (data) => {
+        console.log('¿Qué viene de Symfony?', data); // Mira esto en la consola (F12)
+        this.enfermerosArray = data;
+      },
+      error: (err) => console.error('Error total:', err)
+    });
   }
+
 
   toggleContrasenas() {
     this.mostrarContrasenas = !this.mostrarContrasenas;
