@@ -1,0 +1,270 @@
+/* =========================================
+   1. VARIABLES Y CONFIGURACIÓN GLOBAL
+   ========================================= */
+:root {
+    --primary-blue: #0d6efd;
+    --dark-blue: #0c55c2;
+    --danger-red: #dc3545;
+    --light-bg: #f8f9fa;
+}
+
+.profile-container {
+    max-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--light-bg);
+    padding: 30px;
+}
+
+/* =========================================
+   2. TARJETA DE PERFIL (CARD)
+   ========================================= */
+.profile-card {
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.profile-card:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.profile-header-bg {
+    height: 140px;
+    background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
+}
+
+/* Foto de perfil*/
+.profile-image-wrapper {
+    text-align: center;
+    margin-top: -60px;
+    margin-bottom: 15px;
+}
+
+.profile-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   3. INFORMACIÓN Y DETALLES
+   ========================================= */
+.profile-info {
+    padding: 0 30px 30px 30px;
+    text-align: center;
+}
+
+.profile-full-name {
+    color: var(--dark-blue);
+    font-weight: 800;
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+}
+
+.profile-role {
+    color: #6c757d;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.profile-details {
+    background-color: #f1f4f9;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.detail-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #495057;
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+}
+
+.detail-item:last-child {
+    margin-bottom: 0;
+}
+
+.detail-item i {
+    color: var(--primary-blue);
+}
+
+/* =========================================
+   4. BOTONES (COLORES Y ANIMACIONES ORIGINALES)
+   ========================================= */
+.btn-action {
+    width: 100%;
+    height: 54px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 1;
+}
+
+/* --- BOTÓN ACTUALIZAR --- */
+.btn-update {
+    background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+    margin-bottom: 20px;
+    /* Separación añadida entre botones */
+}
+
+.btn-update:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(13, 110, 253, 0.4);
+    filter: brightness(1.1);
+}
+
+/* --- BOTÓN ELIMINAR --- */
+.btn-delete {
+    background-color: #fff1f2;
+    color: #e11d48;
+    border: 1px solid #fda4af;
+}
+
+.btn-delete:hover {
+    background-color: #e11d48;
+    color: white;
+    border-color: #e11d48;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(225, 29, 72, 0.25);
+}
+
+.btn-action:active {
+    transform: translateY(-1px);
+}
+
+/* Efecto de brillo original */
+.btn-action::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.btn-action:hover::after {
+    left: 100%;
+}
+
+/* =========================================
+   5. MODAL PERSONALIZADO
+   ========================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+.custom-modal {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease;
+}
+
+.modal-icon {
+    font-size: 3rem;
+    color: #dc3545;
+    margin-bottom: 15px;
+}
+
+.modal-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-secondary {
+    flex: 1;
+    background: #f1f5f9;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    color: #475569;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-danger-confirm {
+    flex: 2;
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* =========================================
+   6. ANIMACIONES
+   ========================================= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
