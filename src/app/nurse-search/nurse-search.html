@@ -3,8 +3,7 @@
   <h1 class="text-primary fw-bold text-center mb-4">Buscar Enfermero</h1>
 
   <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap mb-4">
-    
-    <!-- Nombre -->
+
     <input type="text"
            class="form-control bg-light border border-primary-subtle shadow-sm"
            placeholder="Nombre..."
@@ -12,22 +11,14 @@
            (input)="filterName()"
            style="max-width: 300px;">
 
-    <!-- Apellido -->
-    <input type="text"
-           class="form-control bg-light border border-primary-subtle shadow-sm"
-           placeholder="Apellido..."
-           [(ngModel)]="lastNameText"
-           (input)="filterLastName()"
-           style="max-width: 300px;">
-
-    <!-- Botón -->
-    <button class="btn btn-primary px-4 shadow-sm" (click)="search()">Buscar</button>
-
+    <button class="btn btn-primary px-4 shadow-sm" (click)="search()">
+      Buscar
+    </button>
   </div>
 
   @if (hasSearched && results.length === 0) {
     <p class="text-center text-secondary-emphasis fs-5">
-      No hay resultados para "{{ searchedName }} {{ searchedLastName }}"
+      No hay resultados para "{{ searchedName }}"
     </p>
   }
 
@@ -35,26 +26,24 @@
     <div class="table-responsive">
       <table class="table table-hover table-striped shadow-sm rounded-3 overflow-hidden">
 
-        <thead class="table-primary text-primary-emphasis">
+        <thead class="table-primary">
           <tr>
             <th>Nombre</th>
-            <th>Apellido</th>
             <th>Usuario</th>
             <th>Contraseña</th>
             <th>Foto</th>
           </tr>
         </thead>
 
-        <tbody class="table-group-divider">
-          @for (user of results; track $index) {
-            <tr class="bg-light-subtle">
-              <td class="fw-semibold">{{ user.name }}</td>
-              <td class="fw-semibold">{{ user.last_name }}</td>
-              <td>{{ user.user }}</td>
-              <td>{{ user.password }}</td>
+        <tbody>
+          @for (nurse of results; track nurse.id) {
+            <tr>
+              <td class="fw-semibold">{{ nurse.name }}</td>
+              <td>{{ nurse.username }}</td>
+              <td>{{ nurse.password }}</td>
               <td>
                 <img src="https://cdn-icons-png.flaticon.com/512/387/387561.png"
-                     class="results-img rounded-circle border border-primary-subtle shadow-sm">
+                     class="results-img rounded-circle">
               </td>
             </tr>
           }
@@ -63,5 +52,4 @@
       </table>
     </div>
   }
-
 </div>
