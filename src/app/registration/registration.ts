@@ -16,7 +16,7 @@ export class Registration {
 
 
   constructor(private authService: AuthService) {
-    this.nurse = new Nurse('', '', '', '', '', '');
+    this.nurse = new Nurse('', '', '', '', '');
   }
 
   register(): void {
