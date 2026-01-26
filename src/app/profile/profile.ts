@@ -1,12 +1,13 @@
-import { Component, OnInit, inject, signal } from '@angular/core';
-import { NurseService } from '../service/nurse.service';
 import { CommonModule } from '@angular/common';
+import { Component, OnInit, inject, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NurseService } from '../service/nurse.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './profile.html',
   styleUrl: './profile.css',
 })
@@ -17,8 +18,14 @@ export class Profile implements OnInit {
 
   public nurseData = signal<any>(null);
 
+  // Modales y estados de carga
   public showDeleteModal = signal<boolean>(false);
+  public showEditModal = signal<boolean>(false);
   public isDeleting = signal<boolean>(false);
+  public isUpdating = signal<boolean>(false);
+
+  //Objeto temporal para el formulario de edición
+  public editForm = { name: '', user: '', password: '' };
 
   ngOnInit() {
     this.loadProfile();
@@ -31,6 +38,7 @@ export class Profile implements OnInit {
     });
   }
 
+  // --- LÓGICA DE ELIMINACIÓN ---
   openDeleteModal() {
     this.showDeleteModal.set(true);
   }
@@ -62,5 +70,31 @@ export class Profile implements OnInit {
     });
   }
 
+  // --- LÓGICA DE EDICIÓN ---
+  openEditModal() {
+    const currentData = this.nurseData();
+    this.editForm = { name: currentData.name, user: currentData.user, password: currentData.password };
+    this.showEditModal.set(true);
+  }
 
+  closeEditModal() {
+    if (!this.isUpdating()) {
+      this.showEditModal.set(false);
+    }
+  }
+
+  confirmUpdate() {
+    this.isUpdating.set(true);
+    this.nurseService.updateNurse(this.nurseData().id, this.editForm).subscribe({
+      next: (response) => {
+        this.nurseData.set(response.user);
+        this.isUpdating.set(false);
+        this.showEditModal.set(false);
+      },
+      error: (err) => {
+        this.isUpdating.set(false);
+        alert('Error al actualizar');
+      }
+    });
+  }
 }
