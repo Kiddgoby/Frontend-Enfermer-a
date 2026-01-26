@@ -49,4 +49,20 @@ export class NurseService {
     private cargarLista() {
         this.getEnfermeros().subscribe(data => this.nurses.set(data));
     }
+
+    // Obtiene un enfermero por ID
+    getNurseById(id: number): Observable<any> {
+        return this.http.get<any>(`${this.apiUrl}/find/${id}`);
+    }
+
+    // Elimina un enfermero por ID
+    deleteNurse(id: number): Observable<any> {
+        return this.http.delete(`${this.apiUrl}/delete/${id}`);
+    }
+    
+    // Actualiza un enfermero por ID
+    updateNurse(id: number, data: any): Observable<any> {
+        return this.http.put(`${this.apiUrl}/update/${id}`, data);
+    }
+
 }

@@ -6,6 +6,7 @@ import { App } from './app';
 import { Home } from './home/home';
 import { NurseList } from './nurse-list/nurse-list';
 import { Registration } from './registration/registration';
+import { Profile } from './profile/profile';
 
 export const routes: Routes = [
     { path: '', component: Home },
@@ -21,4 +22,5 @@ export const routes: Routes = [
 
     { path: 'login', component: Login },
     { path: 'registration', component: Registration },
+    { path: 'profile', component: Profile },
 ];

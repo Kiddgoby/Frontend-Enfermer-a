@@ -1,0 +1,128 @@
+<div class="profile-container">
+    @if (nurseData()) {
+    <div class="profile-card">
+        <div class="profile-header-bg"></div>
+        <div class="profile-image-wrapper">
+            <!-- Avatar generado con el nombre -->
+            <img src="https://ui-avatars.com/api/?name={{nurseData().name}}&background=0d6efd&color=fff&size=150"
+                alt="Foto de perfil" class="profile-img">
+        </div>
+        <div class="profile-info">
+            <h2 class="profile-full-name">{{ nurseData().name }}</h2>
+            <div class="profile-details">
+                <div class="detail-item">
+                    <i class="bi bi-person-badge"></i>
+                    <span><strong>Usuario:</strong> {{ nurseData().user }}</span>
+                </div>
+                <div class="detail-item">
+                    <i class="bi bi-hash"></i>
+                    <span><strong>ID Empleado:</strong> #{{ nurseData().id }}</span>
+                </div>
+            </div>
+
+            <div class="row gx-2 mt-4">
+                <!-- Botón Actualizar -->
+                <div class="col-12">
+                    <button class="btn-action btn-update" (click)="openEditModal()">
+                        <span class="btn-content">
+                            <i class="bi bi-pencil-square"></i> Actualizar Perfil
+                        </span>
+                    </button>
+                </div>
+                <!-- Botón Eliminar -->
+                <div class="col-12">
+                    <button class="btn-action btn-delete" (click)="openDeleteModal()">
+                        <span class="btn-content">
+                            <i class="bi bi-trash3"></i> Eliminar Cuenta
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE EDICIÓN -->
+    @if (showEditModal()) {
+    <div class="modal-overlay">
+        <div class="custom-modal">
+            <div class="modal-icon-edit">
+                <i class="bi bi-person-gear" style="font-size: 3rem; color: #0d6efd;"></i>
+            </div>
+            <h3>Editar Perfil</h3>
+            <p style="color: #64748b; font-size: 0.9rem;">Modifica tus datos de acceso</p>
+
+            <div class="edit-form-container" style="text-align: left; margin-top: 20px;">
+                <!-- Campo Nombre -->
+                <div class="input-group-custom" style="margin-bottom: 15px;">
+                    <label
+                        style="display: block; font-weight: 700; font-size: 0.8rem; color: #0c55c2; margin-bottom: 5px;">Nombre</label>
+                    <input type="text" [(ngModel)]="editForm.name"
+                        style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                </div>
+                <!-- Campo Nombre de Usuario -->
+                <div class="input-group-custom" style="margin-bottom: 15px;">
+                    <label
+                        style="display: block; font-weight: 700; font-size: 0.8rem; color: #0c55c2; margin-bottom: 5px;">Nombre
+                        de Usuario</label>
+                    <input type="text" [(ngModel)]="editForm.user"
+                        style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                </div>
+                <!-- Campo Contraseña (NUEVO) -->
+                <div class="input-group-custom" style="margin-bottom: 20px;">
+                    <label
+                        style="display: block; font-weight: 700; font-size: 0.8rem; color: #0c55c2; margin-bottom: 5px;">Nueva
+                        Contraseña</label>
+                    <input type="password" [(ngModel)]="editForm.password"
+                        style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #e2e8f0;"
+                        placeholder="Escribe la nueva contraseña">
+                </div>
+            </div>
+
+            <div class="modal-actions">
+                <button class="btn-secondary" (click)="closeEditModal()" [disabled]="isUpdating()">
+                    Cancelar
+                </button>
+                <button class="btn-danger-confirm" (click)="confirmUpdate()" [disabled]="isUpdating()"
+                    style="background-color: #0d6efd; color: white;">
+                    @if (isUpdating()) {
+                    <span class="spinner-border spinner-border-sm"></span>
+                    } @else {
+                    Guardar Cambios
+                    }
+                </button>
+            </div>
+        </div>
+    </div>
+    }
+
+    <!-- MODAL DE ELIMINACIÓN -->
+    @if (showDeleteModal()) {
+    <div class="modal-overlay">
+        <div class="custom-modal">
+            <div class="modal-icon">
+                <i class="bi bi-exclamation-triangle"></i>
+            </div>
+            <h3>¿Estás seguro?</h3>
+            <p>Esta acción eliminará permanentemente la cuenta de <strong>{{ nurseData().name }}</strong>.</p>
+            <div class="modal-actions">
+                <button class="btn-secondary" (click)="closeDeleteModal()" [disabled]="isDeleting()">
+                    Cancelar
+                </button>
+                <button class="btn-danger-confirm" (click)="confirmDelete()" [disabled]="isDeleting()">
+                    @if (isDeleting()) {
+                    <span class="spinner-border spinner-border-sm"></span>
+                    } @else {
+                    Sí, eliminar cuenta
+                    }
+                </button>
+            </div>
+        </div>
+    </div>
+    }
+
+    } @else {
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Cargando...</span>
+    </div>
+    }
+</div>
