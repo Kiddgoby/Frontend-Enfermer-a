@@ -8,6 +8,7 @@ import { Nurse } from '../models/nurse.model';
 })
 export class NurseService {
     private http = inject(HttpClient);
+    private _registrationStatus = signal<string>('');
 
     // URL base de tu servidor Symfony en XAMPP
     private apiUrl = 'http://localhost:8000/nurse';
@@ -22,6 +23,7 @@ export class NurseService {
     getEnfermeros(): Observable<Nurse[]> {
         return this.http.get<Nurse[]>(`${this.apiUrl}/index`);
     }
+
 
     /**
      * Registra un enfermero y actualiza el signal de estado
@@ -59,10 +61,18 @@ export class NurseService {
     deleteNurse(id: number): Observable<any> {
         return this.http.delete(`${this.apiUrl}/delete/${id}`);
     }
-    
+
     // Actualiza un enfermero por ID
     updateNurse(id: number, data: any): Observable<any> {
         return this.http.put(`${this.apiUrl}/update/${id}`, data);
+    }
+
+    setRegistrationStatus(status: string) {
+        this._registrationStatus.set(status);
+    }
+
+    getRegistrationStatus() {
+        return this._registrationStatus();
     }
 
 }

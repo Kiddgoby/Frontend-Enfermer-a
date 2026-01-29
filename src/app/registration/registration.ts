@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AuthService } from '../auth.service';
+import { NurseService } from '../service/nurse.service';
 import { Nurse } from '../models/nurse.model';
 
 @Component({
@@ -15,25 +15,25 @@ export class Registration {
   nurse: Nurse;
 
 
-  constructor(private authService: AuthService) {
+  constructor(private nurseService: NurseService) {
     this.nurse = new Nurse('', '', '', '', '');
   }
 
   register(): void {
     if (this.nurse.password !== this.nurse.passwordConfirm) {
-      this.authService.setRegistrationStatus('error');
+      this.nurseService.setRegistrationStatus('error');
       console.error('Las contraseñas no coinciden');
       return;
     }
-    const success = this.authService.registerNurse(this.nurse);
+    const success = this.nurseService.registerNurse(this.nurse);
     if (success) {
-      this.authService.setRegistrationStatus('success');
+      this.nurseService.setRegistrationStatus('success');
     }
     else {
-      this.authService.setRegistrationStatus('error');
+      this.nurseService.setRegistrationStatus('error');
     }
   }
   get registrationStatus(): string {
-    return this.authService.getRegistrationStatus();
+    return this.nurseService.getRegistrationStatus();
   }
 }
