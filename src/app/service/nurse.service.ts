@@ -33,7 +33,7 @@ export class NurseService {
         next: (response) => {
         this.registrationStatus.set('success');
 
-        // Guardar el ID en localStorage
+        //  Guardar el ID en localStorage
         localStorage.setItem('nurse_id', response.id);
 
         console.log('✅ Guardado en base de datos:', response);
