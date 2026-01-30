@@ -29,21 +29,27 @@ export class NurseService {
      * Registra un enfermero y actualiza el signal de estado
      */
     registerNurse(nurse: Nurse) {
-        this.registrationStatus.set('loading');
+    this.registrationStatus.set('loading');
 
-        return this.http.post(`${this.apiUrl}/register`, nurse).subscribe({
-            next: (response) => {
-                this.registrationStatus.set('success');
-                console.log('✅ Guardado en base de datos:', response);
-                // Opcional: recargar la lista después de guardar
-                this.cargarLista();
-            },
-            error: (err) => {
-                this.registrationStatus.set('error');
-                console.error('❌ Error en el registro:', err);
-            }
-        });
+    return this.http.post<any>(`${this.apiUrl}/register`, nurse).subscribe({
+        next: (response) => {
+        this.registrationStatus.set('success');
+
+        // Guardar el ID en localStorage
+        localStorage.setItem('nurse_id', response.id);
+
+        console.log('✅ Guardado en base de datos:', response);
+
+        // Opcional: recargar la lista después de guardar
+        this.cargarLista();
+        },
+        error: (err) => {
+        this.registrationStatus.set('error');
+        console.error('❌ Error en el registro:', err);
+        }
+    });
     }
+
 
     /**
      * Método auxiliar para actualizar el signal de la lista
