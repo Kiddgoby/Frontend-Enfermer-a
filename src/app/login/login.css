@@ -79,10 +79,3 @@
         padding: 1.5rem;
     }
 }
-
-.login-container img {
-    display: block;      
-    margin: 0 auto 1.5rem; 
-    width: 100px;        
-    height: auto;   
-}
