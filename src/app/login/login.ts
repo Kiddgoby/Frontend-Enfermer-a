@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../auth.service';
+import { NurseService } from '../service/nurse.service'; // Import NurseService
 import { Router } from '@angular/router';
 
 
@@ -15,10 +16,12 @@ export class Login {
   username: string = '';
   password: string = '';
   authService: AuthService;
+  nurseService: NurseService;
 
 
-  constructor(authService: AuthService) {
+  constructor(authService: AuthService, nurseService: NurseService) {
     this.authService = authService;
+    this.nurseService = nurseService;
   }
 
   loginStatus: string = '';
@@ -29,29 +32,22 @@ export class Login {
       return;
     }
 
-    const nurse = this.authService.getNurses().find(n => n.username === this.username && n.password === this.password);
-    if (nurse) {
-      this.authService.setLoginStatus('success');
+    this.nurseService.getEnfermeros().subscribe({
+      next: (nurses) => {
+        const nurse = nurses.find(n => n.username === this.username && n.password === this.password);
 
-      // const nurse = this.authService.getNurses().find(n => n.username === this.username && n.password === this.password);
-      // if (nurse) {
-      //   this.authService.setLoginStatus('success');
-
-      //   // Validar con los datos locales simulados
-      //   const foundUser = this.nurseUser.find(
-      //     user => user.username === this.username && user.password === this.password
-      //   );
-
-      //   if (foundUser) {
-      //     this.loginStatus = 'success';
-
-      //     if (this.username === 'olalla' || this.username === 'arnau') {
-      //       this.router.navigate(['./nurse-search']);
-      //     }
-      //   } else {
-      //     this.authService.setLoginStatus('error');
-      //   }
-      // }
-    }
+        if (nurse) {
+          this.authService.setLoginStatus('success');
+          console.log('Login exitoso:', nurse);
+        } else {
+          this.authService.setLoginStatus('error');
+          console.error('Login fallido: Usuario o contraseña incorrectos');
+        }
+      },
+      error: (err) => {
+        console.error('Error al conectar con la base de datos:', err);
+        this.authService.setLoginStatus('error');
+      }
+    });
   }
 }
